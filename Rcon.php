@@ -11,12 +11,6 @@ class Rcon{
         $this->rconPass = $r;
     }
 
-    public function openSocket(){
-        $tcpsocket = stream_socket_client("tcp://$this->ip:$this->port", $errno, $errorMessage);
-        if ($tcpsocket === false) return null;
-        else return $tcpsocket;
-    }
-
     public function send($tcpsocket, $command){
         fwrite($tcpsocket, $command);
         $response = fread($tcpsocket, 8889);
